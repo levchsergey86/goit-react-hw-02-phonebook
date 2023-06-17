@@ -20,30 +20,35 @@ const ContactForm = ({ addContact }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Имя</h2>
-      <input
-        type="text"
-        name="name"
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        title="Имя может содержать только буквы, апострофы, тире и пробелы."
-        required
-        value={name}
-        onChange={handleChange}
-      />
-
-      <h2>Номер</h2>
-      <input
-        type="text"
-        name="number"
-        pattern="^[\d-]*$"
-        title="Номер может содержать только цифры и символы."
-        required
-        value={number}
-        onChange={handleChange}
-      />
-      <button type="submit">Добавить контакт</button>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <h3>Name:</h3>
+          <input
+            type="text"
+            name="name"
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            required
+            value={name}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <h3>Number:</h3>
+          <input
+            type="text"
+            name="number"
+            pattern="^[\d-]*$"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+            value={number}
+            onChange={handleChange}
+          />
+        </div>
+        <button type="submit">Add contact</button>
+      </form>
+    </div>
   );
 };
 

@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import ContactForm from './ContactForm/ContactForm';
+import FilterContacts from './FilterContacts/FilterContacts';
+import ContactList from './ContactList/ContactList';
 import { nanoid } from 'nanoid';
 
 const App = () => {
   const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
-
-  const filterContacts = event => {
-    setFilter(event.target.value);
-  };
 
   const deleteContact = id => {
     setContacts(prevContacts =>
@@ -22,7 +20,7 @@ const App = () => {
     );
 
     if (isContactExists) {
-      alert('Контакт с таким именем или номером уже существует.');
+      alert('Contact with the same name or number already exists.');
       return;
     }
 
@@ -35,35 +33,24 @@ const App = () => {
     setContacts(prevContacts => [...prevContacts, newContact]);
   };
 
+  const handleFilterChange = event => {
+    setFilter(event.target.value);
+  };
+
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
   return (
     <div>
-      <h1>ТЕЛЕФОННАЯ КНИГА</h1>
+      <h1>PHONE BOOK</h1>
       <ContactForm addContact={addContact} />
-      <h3>Контакты:</h3>
-      <h4>Найти контакт</h4>
-      <input
-        type="text"
-        name="filter"
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        title="Имя может содержать только буквы, апострофы, тире и пробелы."
-        required
-        value={filter}
-        onChange={filterContacts}
+      <h2>Contacts:</h2>
+      <FilterContacts handleFilterChange={handleFilterChange} />
+      <ContactList
+        filteredContacts={filteredContacts}
+        deleteContact={deleteContact}
       />
-      <ul>
-        {filteredContacts.map(contact => (
-          <li key={contact.id}>
-            {contact.name} - {contact.number}{' '}
-            <button onClick={() => deleteContact(contact.id)}>
-              Удалить контакт
-            </button>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 };
