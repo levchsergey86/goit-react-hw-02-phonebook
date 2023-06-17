@@ -3,6 +3,7 @@ import ContactForm from './ContactForm/ContactForm';
 import FilterContacts from './FilterContacts/FilterContacts';
 import ContactList from './ContactList/ContactList';
 import { nanoid } from 'nanoid';
+import styled from './App.module.css';
 
 const App = () => {
   const [contacts, setContacts] = useState([]);
@@ -42,7 +43,7 @@ const App = () => {
   );
 
   return (
-    <div>
+    <div className={styled.container}>
       <h1>PHONE BOOK</h1>
       <ContactForm addContact={addContact} />
       <h2>Contacts:</h2>
