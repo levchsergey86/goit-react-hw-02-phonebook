@@ -39,9 +39,9 @@ const ContactForm = ({ addContact }) => {
         <div>
           <h3>Number:</h3>
           <input
-            type="text"
+            type="number"
             name="number"
-            pattern="^[\d-]*$"
+            pattern="^[\d\s-]+$"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
             value={number}
