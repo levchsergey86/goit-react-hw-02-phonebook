@@ -8,7 +8,7 @@ const FilterContacts = ({ handleFilterChange }) => {
       <input
         type="text"
         name="filter"
-        pattern="[a-zA-Zа-яА-Я\s'-]"
+        pattern="^[A-Za-z\u0080-\uFFFF ']+$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
         onChange={handleFilterChange}
